@@ -19,6 +19,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 //     })
 // });
 
-app.use('/autores', autorRoutes.get);
+app.use('/autores', autorRoutes);
 
 module.exports = app;

@@ -4,24 +4,37 @@ const sql = require('mssql');
 
 var proceduresName = {
     BLTC_SelectAutor: 'BLTC_SelectAutor',
+    BLTC_SelectAutorByID: 'BLTC_SelectAutorByID',
     BLTC_InsertAutor: 'BLTC_InsertAutor',
     BLTC_AlteraAutor: 'BLTC_AlteraAutor',
     BLTC_DeletaAutor: 'BLTC_DeletaAutor'
 }
 
 var procedures = {
-    get: (req, res) =>{ 
+    get: () =>{ 
         sql.connect(config, err=> {
             new sql.Request()
-            .input('IDAutor', sql.Int, req.params.id)
             .execute(proceduresName.BLTC_SelectAutor, (err, result) => {
                 if(err){
                     console.log('Erro' + err)
                 }
-                console.log(result.recordset);
-                return result;
+                sql.close();
+                return JSON.stringify(result);
             });
         });
+    },
+    getById: (id) => {
+        sql.connect(config, err=> {
+            new sql.Request()
+            .input('IDAutor', sql.SmallInt, id)
+            .execute(proceduresName.getById, (err, result) => {
+                if(err){
+                    console.log('Erro' + err)
+                }
+                sql.close();
+                return result;
+            })
+        })
     },
     post: (req, res) => {
         sql.connect(config, err=>{
@@ -32,6 +45,7 @@ var procedures = {
                 if(err){
                     console.log('Erro' + err)
                 }
+                sql.close();
                 console.log('Autor inserido com sucesso!');
             });
         });
@@ -46,6 +60,7 @@ var procedures = {
                 if(err){
                     console.log('Erro' + err)
                 }
+                sql.close();
                 console.log('Dados do autor alterados com sucesso!');
             });
         });
@@ -58,6 +73,7 @@ var procedures = {
                 if(err){
                     console.log('Erro' + err);
                 }
+                sql.close();
                 console.log('Autor removido com sucesso!');
             });
         });
