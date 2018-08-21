@@ -26,4 +26,35 @@ exports.getById = async(req, res, next) => {
     }
 }
 
+exports.post = async(req, res, next) => {
+    try{
+        await autorRepository.post({
+            NomeAutor: req.body.NomeAutor,
+            SobrenomeAutor: req.body.SobrenomeAutor
+        });
+        res.status(201).send({
+            message: 'Autor cadastrado com sucesso!'
+        });
+    } 
+    catch(e){
+        res.status(500).send({
+            message: 'Erro ao cadastrar autor'
+        });
+    }
+}
+
+
+exports.delete = async(req, res, next) => {
+    try{
+        await autorRepository.delete(req.params.id);
+        res.status(200).send({
+            message: 'Autor removido com sucesso!'
+        });
+    }catch(e){
+        res.status(500).send({
+            message: 'Falha ao processar requisição'
+        });
+    }
+}
+
 
