@@ -3,13 +3,14 @@ const autorRepository = require('../repositories/autorRepository');
 
 exports.get = async(req, res, next) =>{
     try{
-        var data = await autorRepository.get();
-        res.status(200).send(data);
+        var response = await autorRepository.get();
+        res.status(200).send(response);
     }
     catch(e){
         res.status(500).send({
             message: 'Falha ao processar requisição'
         });
+        console.log(e);
     }
 }
 
