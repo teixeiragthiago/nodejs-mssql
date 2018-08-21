@@ -28,32 +28,21 @@ var procedures = {
         .execute(proceduresName.BLTC_SelectAutorByID)
        .then(result=>{
            return result.recordset; 
-           sql.close();
        }).catch(err =>{
            console.log('Erro ' + err);
        });
        return resultset2;
     },
-    post: (NomeAutor, SobrenomeAutor) => {
-      let data = 
-      request.input('NomeAutor', sql.VarChar(50), NomeAutor)
-      .input('SobrenomeAutor', sql.VarChar(60), SobrenomeAutor)
+    post: (Nome_Autor, Sobrenome_Autor) => {
+      request.input('Nome_Autor', sql.VarChar(50), Nome_Autor)
+      .input('Sobrenome_Autor', sql.VarChar(60), Sobrenome_Autor)
       .execute(proceduresName.BLTC_InsertAutor)
     },
-    put: (req, res) => {
-        sql.connect(config, err=>{
-            new sql.Request()
-            .input("ID", sql.SmallInt, 7)
-            .input("NovoNome", sql.VarChar(50), "Adoniram")
-            .input("NovoSobrenome", sql.VarChar(60), "Barbosa")
-            .execute(proceduresName.BLTC_AlteraAutor, (err, result)=>{
-                if(err){
-                    console.log('Erro' + err)
-                }
-                sql.close();
-                console.log('Dados do autor alterados com sucesso!');
-            });
-        });
+    put: (ID, NovoNome, NovoSobrenome) => {
+        request.input('ID', sql.SmallInt, ID)
+        .input('NovoNome', sql.VarChar(50), NovoNome)
+        .input('NovoSobrenome', sql.VarChar(60), NovoSobrenome)
+        .execute(proceduresName.BLTC_AlteraAutor)
     },
     delete: (IDAutor) => {
         request.input('ID', sql.SmallInt, IDAutor)
