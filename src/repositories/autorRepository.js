@@ -19,7 +19,7 @@ var procedures = {
                     console.log('Erro' + err)
                 }
                 sql.close();
-                return JSON.stringify(result);
+                return result.recordset;
             });
         });
     },
