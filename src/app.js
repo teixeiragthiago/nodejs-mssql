@@ -8,6 +8,8 @@ const router = express.Router();
 
 //Carregando as rotas
 const autorRoutes = require('./routes/autorRoute');
+const editoraRoutes = require('./routes/editoraRoutes');
+const livroRoutes = require('./routes/livrosRoute');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -20,5 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // });
 
 app.use('/autores', autorRoutes);
+app.use('/editoras', editoraRoutes);
+app.use('/livros', livroRoutes);
 
 module.exports = app;
