@@ -35,12 +35,13 @@ exports.post = async(req, res, next) => {
             req.body.ID_Autor,
             req.body.ID_Editora
         );
-
         res.status(200).send({
             message: 'Livro cadastrado com sucesso!'
         })
     }catch(e){
-
+        res.status(500).send({
+            message: 'Falha ao cadastrar livro'
+        });
     }
 }
 
@@ -60,7 +61,7 @@ exports.put = async(req, res, next) => {
         });
 
     } catch(e) {
-        res.status(200).send({
+        res.status(500).send({
             message: 'Erro ao alterar dados do livro'
         });
     }

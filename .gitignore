@@ -1,3 +1,4 @@
 .gitignore
 connection/
 node_modules/
+configjs

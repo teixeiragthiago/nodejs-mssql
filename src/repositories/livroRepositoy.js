@@ -50,7 +50,7 @@ var procedures = {
         var request = new sql.Request(_conexao);
         request.input('NomeLivro', sql.VarChar(50), NomeLivro)
         .input('ISBN', sql.VarChar(30), ISBN)
-        .input('DataPub', sql.DateTime, DataPub)
+        .input('DataPub', sql.VarChar(30), DataPub)
         .input('PrecoLivro', sql.Money, PrecoLivro)
         .input('IDAutor', sql.SmallInt, IDAutor)
         .input('IDEditora', sql.SmallInt, IDEditora)
@@ -68,7 +68,7 @@ var procedures = {
         request.input('ID', sql.SmallInt, ID)
         .input('NovoNome', sql.VarChar(50), NovoNome)
         .input('NovoISBN', sql.VarChar(30), NovoISBN)
-        .input('NovaData', sql.DateTime, NovaData)
+        .input('NovaData', sql.VarChar(30), NovaData)
         .input('NovoIdAutor', sql.SmallInt, NovoIdAutor)
         .input('NovoIdEditora', sql.SmallInt, NovoIdEditora)
         .execute(proceduresName.BLTC_AlterarLivro)
