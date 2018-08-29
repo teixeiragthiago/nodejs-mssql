@@ -1,5 +1,5 @@
 'use strict'
-const livroRepository = require('../repositories/livroRepositoy');
+const livroRepository = require('../repositories/livroRepository');
 
 exports.get = async(req, res, next) => {
     try{
@@ -77,5 +77,6 @@ exports.delete = async(req, res, next) => {
         res.status(500).send({
             message: 'Falha ao processar requisição'
         });
+        console.log(e);
     }
 }

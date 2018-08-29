@@ -53,7 +53,6 @@ var procedures = {
         var request = new sql.Request(_conexao);
         request.input('ID', sql.SmallInt, IDAutor)
         .execute(proceduresName.BLTC_DeletaAutor)
-        sql.close();
     }
 }
 

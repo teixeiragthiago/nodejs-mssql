@@ -74,10 +74,9 @@ var procedures = {
         .execute(proceduresName.BLTC_AlterarLivro)
     },
     delete: (IDLivro) => {
-        var request = new sql.Resquest(_conexao);
-        request.input(' ID', sql.SmallInt, IDLivro)
+        var request = new sql.Request(_conexao);
+        request.input('ID', sql.SmallInt, IDLivro)
         .execute(proceduresName.BLTC_DeletarLivro)
-        sql.close();
     }
 }
 
