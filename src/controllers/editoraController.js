@@ -3,26 +3,25 @@ const editoraRepository = require('../repositories/editoraRepository');
 
 exports.get = async(req, res, next) => {
     try {
-        var response = await editoraRepository.get();
+        const response = await editoraRepository.get();
         res.status(200).send(response);
     }
     catch(e){
         res.status(500).send({
             message: 'Falha ao processar requisição'
         });
-        console.log(e);
     }
 }
 
 exports.getById = async(req, res, next) => {
     try {
-        var response = await editoraRepository.getById(req.params.id);
+        const response = await editoraRepository.getById(req.params.id);
         res.status(200).send(response);
     }
     catch(e){
         res.status(500).send({
             message: 'Falha ao processar requisição'
-        })
+        });
     }
 }
 

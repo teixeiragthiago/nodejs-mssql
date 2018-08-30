@@ -12,46 +12,37 @@ var proceduresName = {
 }
 
 var procedures = {
-    get: () => {
-        var request = new sql.Request(_conexao);
-        var resultset = 
-        request.execute(proceduresName.BLTC_SelectEditora)
-        .then(result => {
-            return result.recordset;
-        }).catch(err => {
-            console.log('Erro' + err);
-        });
-        return resultset;
-        sql.close();
+    get: async() => {
+        const request = new sql.Request(_conexao);
+        const resultset = await request.execute(proceduresName.BLTC_SelectEditora)
+        return resultset.recordset;
     },
-    getById: (ID) => {
-        var request = new sql.Request(_conexao);
-        var resultset2 = 
-        request.input('ID', sql.SmallInt, ID)
-        .execute(proceduresName.BLTC_SelectEditoraByID)
-        .then(result => {
-            return result.recordset;
-        }).catch(err => {
-            console.log('Erro' + err);
-        })
-        return resultset2;
-        sql.close();
+    getById: async(ID) => {
+        const request = new sql.Request(_conexao);
+        const resultset = 
+        await request
+            .input('ID', sql.SmallInt, ID)
+            .execute(proceduresName.BLTC_SelectEditoraByID)
+        return resultset.recordset;
     },
-    post: (NomeEditora) =>{
-        var request = new sql.Request(_conexao);
-        request.input('Nome', sql.VarChar(50), NomeEditora)
-        .execute(proceduresName.BLTC_InsereEditora)
+    post: async(NomeEditora) =>{
+        const request = new sql.Request(_conexao);
+        await request
+            .input('Nome', sql.VarChar(50), NomeEditora)
+            .execute(proceduresName.BLTC_InsereEditora)
     },
-    put: (IDEditora, NovoNome) => {
-        var request = new sql.Request(_conexao);
-        request.input('ID', sql.SmallInt, IDEditora)
-        .input('NovoNome', sql.VarChar(50), NovoNome)
-        .execute(proceduresName.BLTC_AlteraEditora)
+    put: async(IDEditora, NovoNome) => {
+        const request = new sql.Request(_conexao);
+        await request
+            .input('ID', sql.SmallInt, IDEditora)
+            .input('NovoNome', sql.VarChar(50), NovoNome)
+            .execute(proceduresName.BLTC_AlteraEditora)
     },
-    delete: (IDEditora) =>{
-        var request = new sql.Request(_conexao);
-        request.input('ID', sql.SmallInt, IDEditora)
-        .execute(proceduresName.BLTC_DeletaEditora)
+    delete: async(IDEditora) =>{
+        const request = new sql.Request(_conexao);
+        await request
+            .input('ID', sql.SmallInt, IDEditora)
+            .execute(proceduresName.BLTC_DeletaEditora)
     }
 }
 

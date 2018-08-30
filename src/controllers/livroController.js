@@ -3,7 +3,7 @@ const livroRepository = require('../repositories/livroRepository');
 
 exports.get = async(req, res, next) => {
     try{
-        var response = await livroRepository.get();
+        const response = await livroRepository.get();
         res.status(200).send(response);
     }
     catch(e){
@@ -15,7 +15,7 @@ exports.get = async(req, res, next) => {
 
 exports.getById = async(req, res, next) => {
     try{
-        var response = await livroRepository.getById(req.params.id);
+        const response = await livroRepository.getById(req.params.id);
         res.status(200).send(response);
     }
     catch(e){
@@ -77,6 +77,5 @@ exports.delete = async(req, res, next) => {
         res.status(500).send({
             message: 'Falha ao processar requisição'
         });
-        console.log(e);
     }
 }
