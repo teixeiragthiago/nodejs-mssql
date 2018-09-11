@@ -15,7 +15,6 @@ var procedures = {
         const request = new sql.Request(_conexao);
         const resultset = await request.execute(proceduresName.BLTC_SelectAutor)
         return resultset.recordset;
-        sql.close();
 
     },
     getById:  async(IDAutor) => {
