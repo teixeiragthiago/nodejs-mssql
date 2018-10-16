@@ -2,7 +2,7 @@
 const _conexao = require('../connection/connection');
 const sql = require('mssql');
 
-var proceduresName = {
+const proceduresName = {
     BLTC_SelectAutor: 'BLTC_SelectAutor',
     BLTC_SelectAutorByID: 'BLTC_SelectAutorByID',
     BLTC_InsertAutor: 'BLTC_InsertAutor',
@@ -10,8 +10,8 @@ var proceduresName = {
     BLTC_DeletaAutor: 'BLTC_DeletaAutor'
 }
 
-var procedures = {
-    get: async() =>{ 
+const procedures = {
+    get: async() =>{
         const request = new sql.Request(_conexao);
         const resultset = await request.execute(proceduresName.BLTC_SelectAutor)
         return resultset.recordset;

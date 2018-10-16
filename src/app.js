@@ -8,7 +8,7 @@ const router = express.Router();
 
 //Carregando as rotas
 const autorRoutes = require('./routes/autorRoute');
-const editoraRoutes = require('./routes/editoraRoutes');
+const editoraRoutes = require('./routes/editoraRoute');
 const livroRoutes = require('./routes/livrosRoute');
 
 app.use(bodyParser.json());
