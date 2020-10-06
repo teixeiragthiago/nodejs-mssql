@@ -5,18 +5,18 @@
 const _conexao = require('../connection/connection');
 const sql = require('mssql');
 
-var proceduresName = {
+const proceduresName = {
     BLTC_InsertLivros: 'BLTC_InsertLivros',
     BLTC_SelectLivros: 'BLTC_SelectLivros',
     BLTC_SelectLivrosByID: 'BLTC_SelectLivrosByID',
     BLTC_AlterarLivro: 'BLTC_AlterarLivro',
-    BLTC_DeletarLivro: 'BLTC_DeletarLivro'    
+    BLTC_DeletarLivro: 'BLTC_DeletarLivro'
 }
 
-var procedures = {
+const procedures = {
     get: async() =>{
         const request = new sql.Request(_conexao);
-        const resultset = 
+        const resultset =
         await request
             .execute(proceduresName.BLTC_SelectLivros)
         return resultset.recordset;
@@ -25,7 +25,7 @@ var procedures = {
         const request = new sql.Request(_conexao);
         const resultset =
         await request
-            .input('ID', sql.SmallInt, IDLivro) 
+            .input('ID', sql.SmallInt, IDLivro)
             .execute(proceduresName.BLTC_SelectLivrosByID)
         return resultset.recordset;
     },

@@ -3,15 +3,15 @@
 const _conexao = require('../connection/connection');
 const sql = require('mssql');
 
-var proceduresName = {
+const proceduresName = {
     BLTC_InsereEditora: 'BLTC_InsereEditora',
     BLTC_SelectEditora: 'BLTC_SelectEditora',
     BLTC_SelectEditoraByID: 'BLTC_SelectEditoraByID',
     BLTC_AlteraEditora: 'BLTC_AlteraEditora',
-    BLTC_DeletaEditora: 'BLTC_DeletaEditora'    
+    BLTC_DeletaEditora: 'BLTC_DeletaEditora'
 }
 
-var procedures = {
+const procedures = {
     get: async() => {
         const request = new sql.Request(_conexao);
         const resultset = await request.execute(proceduresName.BLTC_SelectEditora)
@@ -19,7 +19,7 @@ var procedures = {
     },
     getById: async(ID) => {
         const request = new sql.Request(_conexao);
-        const resultset = 
+        const resultset =
         await request
             .input('ID', sql.SmallInt, ID)
             .execute(proceduresName.BLTC_SelectEditoraByID)
